@@ -1,0 +1,40 @@
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Manager Options</title>
+        <script src="jquery.js"></script>
+        <script src="options.js"></script>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <h1>EditOn Options</h1>
+        <h2>Font size <select name="size" id="size">
+            <option value="12px">12px</option>
+            <option value="14px">14px</option>
+            <option value="16px">16px</option>
+            <option value="18px">18px</option>
+            <option value="20px">20px</option>
+            <option value="22px">22px</option>
+        </select></h2>
+
+        <h2>
+            Font:
+            <select name="font" id="font">
+                <option value="cursive">cursive</option>
+                <option value="fantasy">fantasy</option>
+                <option value="monospace">monospace</option>
+                <option value="serif">serif</option>
+                <option value="Lucida Sans">Lucida Sans</option>
+                <option value="Impact">Impact</option>
+                <option value="Verdana">Verdana</option>
+            </select></h2>
+
+        <h2>Size (between 300 to 600): <input type="number" name="size" id="size" min="300" max="600" value="300"></h2>
+
+        <input id="saveChanges" type="submit" value="Save changes"/>
+        
+    </body>
+</html>

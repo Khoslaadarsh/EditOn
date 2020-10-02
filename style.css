@@ -1,0 +1,75 @@
+.Ropes-default {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 400px;
+    height: 200px;
+    border: 1px solid rgb(135, 133, 133);
+    padding: 2px 16px;
+    margin: 5px;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .Ropes-default:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  #cursor {
+    font-size: 30px;
+    color: rgb(135, 133, 133);
+  }
+
+  span{
+      background-color: rgb(135, 133, 133);
+  }
+
+
+  body, html{
+    height: 300px;
+    width: 700px;
+}
+.left-4{
+  background-color: lightgray;
+  overflow: scroll;
+}
+
+.left-4,.right-8{
+    border: solid 0.5px rgb(135, 133, 133);
+    height: 90vh;
+}
+.top-right{
+    border: solid 0.5px rgb(135, 133, 133);
+    height: 13.5vh;
+}
+.middle-right, .middle-3-row{
+    border: solid 0.5px rgb(135, 133, 133);
+    height: 13.5vh;
+}
+.bottom-right{
+    border: solid 0.5px rgb(135, 133, 133);
+    height: 63vh;
+}
+.bottom-most{
+    border: solid 0.5px rgb(135, 133, 133);
+    height: 10vh;
+}
+.bottom-most-left{
+    border: solid 0.5px rgb(135, 133, 133);
+}
+.bottom-most-right{
+    border: solid 0.5px rgb(135, 133, 133);
+}
+.search{
+  /* margin: 3px; */
+}
+textarea {
+    resize: none;
+}
+textarea.ta10em {
+    height: 63vh;
+    width: 100vw;
+}
+.each-icon{
+  text-align: center;
+}
