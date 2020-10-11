@@ -8,9 +8,9 @@
             this.note = note;
         }
     }
+    var currentList = 1;
 
 $(function(){
-     var currentList = 1;
     // Getting Elements from Chrome Storage Api and updating the popu page
 
     chrome.storage.sync.getBytesInUse(['text'], function(bytes){
@@ -31,14 +31,27 @@ $(function(){
                         li.className = "notesss";
                         li.innerHTML = "New Note";
                         document.getElementById('Notes').appendChild(li);
-            
+
+                        let getElemWithClass = document.querySelector('.active-note');
+                        if (getElemWithClass !== null) {
+                            getElemWithClass.classList.remove('active-note');
+                        }
+                        //add the active class to the element from which click event triggered
+                    
+                        li.classList.add('active-note')
+                        // console.log(`list id numebr: ${li.id}`);
+                        currentList = Number(li.id);
+                        document.getElementById('mainText').value = totalNotes[li.id - 1].note;
+                        document.getElementById('mainText').focus();
+
+                        currentList = Number(li.id);
                         li.addEventListener('click', function(){
                             let getElemWithClass1 = document.querySelector('.active-note');
                             if(getElemWithClass1 != null){
                                 getElemWithClass1.classList.remove('active-note');
                             }
                             li.classList.add('active-note');
-                            currentList = li.id;
+                            currentList =  Number(li.id);
                             document.getElementById('mainText').value = totalNotes[li.id - 1].note;
                             document.getElementById('mainText').focus();
                         })
@@ -63,6 +76,9 @@ $(function(){
             li.innerHTML = "New Note";
             document.getElementById('Notes').appendChild(li);
 
+            
+
+            currentList = Number(li.id);
             document.getElementById('1').addEventListener('click', function(){
                 currentList = 1;
                 document.getElementById('mainText').value = totalNotes[0].note;
@@ -111,7 +127,20 @@ $(function(){
         li.className = "notesss"
         li.innerHTML = 'New Note';
         document.getElementById('Notes').appendChild(li);
+
+        let getElemWithClass = document.querySelector('.active-note');
+            if (getElemWithClass !== null) {
+                getElemWithClass.classList.remove('active-note');
+            }
+            //add the active class to the element from which click event triggered
         
+        li.classList.add('active-note')
+        // console.log(`list id numebr: ${li.id}`);
+        currentList = Number(li.id);
+        document.getElementById('mainText').value = totalNotes[li.id - 1].note;
+        document.getElementById('mainText').focus();
+
+        currentList = Number(li.id);
         // add listener to newly generated list item
         li.addEventListener('click', function(elem){
             // console.log(li.id);
@@ -123,14 +152,13 @@ $(function(){
             
             li.classList.add('active-note')
             // console.log(`list id numebr: ${li.id}`);
-            currentList = li.id;
+            currentList = Number(li.id);
             document.getElementById('mainText').value = totalNotes[li.id - 1].note;
             document.getElementById('mainText').focus();
 
         })
         n = n+1;
     })
-
 
 
     document.getElementById('mainText').addEventListener('change', function(){
@@ -149,6 +177,42 @@ $(function(){
         })
 
     });
+
+
+
+    //  Deleting notes
+
+    document.getElementById('delete-note').addEventListener('click', function(){
+        
+        console.log(currentList);
+        totalNotes.splice(currentList - 1, 1);
+
+        
+        document.querySelector('ol').removeChild(document.getElementById(currentList));
+        
+        for(var i = currentList - 1; i<totalNotes.length; i++){
+            totalNotes[i].noteNumber = totalNotes[i].noteNumber - 1;
+            var index = i+1;
+            document.querySelector('ol').children.item(i).id = totalNotes[i].noteNumber;
+        }
+
+        if(currentList == totalNotes.length + 1){
+            currentList = currentList - 1;
+        }
+
+        let getElemWithClass = document.querySelector('.active-note');
+            if (getElemWithClass !== null) {
+                getElemWithClass.classList.remove('active-note');
+            }
+            //add the active class to the element from which click event triggered
+        
+        document.querySelector('ol').children.item(currentList - 1).classList.add('active-note')
+
+        document.getElementById('mainText').value = totalNotes[currentList - 1].note;
+
+        n = n - 1;
+    })
+
 
 
 
