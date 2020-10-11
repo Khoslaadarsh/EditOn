@@ -48,10 +48,11 @@
                             <input class="input-field" type="text" placeholder="search">
                         </div> 
                     </div>
-                    <ol>
-                        <li>note 1</li>
-                        <li>note 2</li>
-                    </ol>
+
+                    <!-- list of notes -->
+                        <ol id="Notes">
+                            <!-- <li id="1" class="active-note notesss">New Note</li> -->
+                        </ol>
                 </div>
 
 
@@ -62,7 +63,7 @@
                     <div class="row top-right">
                         <div class="each-icon">
                             <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            <button type="button" class="btn btn-primary" style="right: 20px; position:absolute;">New Note</button>
+                            <button type="button" class="btn btn-primary" id="New" style="right: 20px; position:absolute;">New Note</button>
                             <i class="fa fa-trash" style="right: 5px;top: 5px; position: absolute;"  aria-hidden="true"></i>
                         </div>
                     </div>
@@ -101,9 +102,9 @@
 
                     </div>
 
-                    <!-- bottom right row -->
-                    <div class="row bottom-right">
-                        <textarea class="ta10em">type here</textarea>
+                    <!-- bottom right row  text area to write note-->
+                    <div class="row bottom-right" id="textAreaDiv">
+                        <textarea class="ta10em" id="mainText">type here</textarea>
                     </div>
 
 

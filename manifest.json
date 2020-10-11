@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
   
-    "name": "Budget Manager",
+    "name": "EditOn01",
     "description": "This extension tracks your overall spendings.",
     "version": "1.0",
     "icons": {
@@ -16,6 +16,6 @@
     },
     "options_page": "options.html",
     "permissions": [
-            "storage",
+            "storage"
           ]
   }

@@ -73,3 +73,8 @@ textarea.ta10em {
 .each-icon{
   text-align: center;
 }
+
+.active-note {
+  color: rgb(60, 18, 152);
+  /* font-size: 24px; */
+}
