@@ -10,8 +10,23 @@
     }
     var currentList = 1;
 
+    var deletedNote = [];
+
+
 $(function(){
     // Getting Elements from Chrome Storage Api and updating the popu page
+    chrome.storage.sync.getBytesInUse(['deleted'], function(bytes){
+        if(bytes != 0){
+            chrome.storage.sync.get('deleted', function(data){
+                deletedNote = data.deleted;
+            })
+        }
+        else{
+            deletedNote = [];
+        }
+    })
+
+    
 
     chrome.storage.sync.getBytesInUse(['text'], function(bytes){
         if(bytes !== 0){
@@ -29,7 +44,7 @@ $(function(){
                         let li = document.createElement('li');
                         li.id = n;
                         li.className = "notesss";
-                        li.innerHTML = "New Note";
+                        li.innerHTML = totalNotes[n - 1].note.substring(0,6);
                         document.getElementById('Notes').appendChild(li);
 
                         let getElemWithClass = document.querySelector('.active-note');
@@ -74,6 +89,8 @@ $(function(){
             li.id = n;
             li.className = "notesss active-note";
             li.innerHTML = "New Note";
+
+            
             document.getElementById('Notes').appendChild(li);
 
             
@@ -110,11 +127,6 @@ $(function(){
 
 
 
-
-
-    
-
-
     // Creating List item and adding click events for other than 1st item
     $('#New').click(function(){
         
@@ -124,8 +136,10 @@ $(function(){
         
         let li = document.createElement('li');
         li.id = n;
-        li.className = "notesss"
+        li.className = "notesss";
         li.innerHTML = 'New Note';
+
+        
         document.getElementById('Notes').appendChild(li);
 
         let getElemWithClass = document.querySelector('.active-note');
@@ -160,6 +174,12 @@ $(function(){
         n = n+1;
     })
 
+    
+    document.getElementById('mainText').addEventListener('input', function(){
+        // console.log(totalNotes[currentList - 1]);
+        document.querySelector('ol').children.item(currentList - 1).innerHTML = document.getElementById('mainText').value.substring(0,6)
+    })
+
 
     document.getElementById('mainText').addEventListener('change', function(){
 
@@ -182,17 +202,24 @@ $(function(){
 
     //  Deleting notes
 
+    
+
+    console.log(totalNotes.length);
     document.getElementById('delete-note').addEventListener('click', function(){
         
-        console.log(currentList);
+        if(totalNotes.length > 1){
+            console.log(currentList);
+
+        deletedNote.push(totalNotes[currentList - 1])
+
+        // console.log(document.getElementById('Deleted-Notes'));
+
         totalNotes.splice(currentList - 1, 1);
 
-        
         document.querySelector('ol').removeChild(document.getElementById(currentList));
         
         for(var i = currentList - 1; i<totalNotes.length; i++){
             totalNotes[i].noteNumber = totalNotes[i].noteNumber - 1;
-            var index = i+1;
             document.querySelector('ol').children.item(i).id = totalNotes[i].noteNumber;
         }
 
@@ -210,8 +237,18 @@ $(function(){
 
         document.getElementById('mainText').value = totalNotes[currentList - 1].note;
 
+
+        chrome.storage.sync.set({'text':totalNotes}, function(){
+            console.log("changes saved");
+        })
+
+        chrome.storage.sync.set({'deleted': deletedNote}, function(){
+            console.log("deleted also updated");
+        })
+
         n = n - 1;
-    })
+    }
+})
 
 
 
@@ -220,5 +257,11 @@ $(function(){
     $(".button-toggle").click(function(){
         $(this).toggleClass("active");
     });
+    // export default function DeletedNote(){
+    //     return deletedNote;
+    // }
+    
+    
 
 });
+
