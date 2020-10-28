@@ -174,6 +174,87 @@ $(function(){
         n = n+1;
     })
 
+    $('#search-note').on('input',function(){
+        if(this.value == "")
+        {
+            $('#Notes').empty();
+            totalNotes.forEach(element => {
+                document.getElementById('mainText').value = totalNotes[element.noteNumber - 1].note;
+            
+                        let li = document.createElement('li');
+                        li.id = element.noteNumber;
+                        li.className = "notesss";
+                        li.innerHTML = totalNotes[li.id - 1].note.substring(0,6);
+                        document.getElementById('Notes').appendChild(li);
+
+                        let getElemWithClass = document.querySelector('.active-note');
+                        if (getElemWithClass !== null) {
+                            getElemWithClass.classList.remove('active-note');
+                        }
+                        //add the active class to the element from which click event triggered
+                    
+                        li.classList.add('active-note')
+                        // console.log(`list id numebr: ${li.id}`);
+                        currentList = Number(li.id);
+                        document.getElementById('mainText').value = totalNotes[li.id - 1].note;
+                        // document.getElementById('mainText').focus();
+
+                        currentList = Number(li.id);
+                        li.addEventListener('click', function(){
+                            let getElemWithClass1 = document.querySelector('.active-note');
+                            if(getElemWithClass1 != null){
+                                getElemWithClass1.classList.remove('active-note');
+                            }
+                            li.classList.add('active-note');
+                            currentList =  Number(li.id);
+                            document.getElementById('mainText').value = totalNotes[li.id - 1].note;
+                            // document.getElementById('mainText').focus();
+                        })
+            });
+        }
+        else
+        {
+            var Nnew = 1;
+            $('#Notes').empty();
+            totalNotes.forEach(element => {
+                if(element.note.includes(this.value)){
+
+                    document.getElementById('mainText').value =element.note;
+            
+                        let li = document.createElement('li');
+                        li.id = n;
+                        li.className = "notesss";
+                        li.innerHTML =element.note.substring(0,6);
+                        document.getElementById('Notes').appendChild(li);
+
+                        let getElemWithClass = document.querySelector('.active-note');
+                        if (getElemWithClass !== null) {
+                            getElemWithClass.classList.remove('active-note');
+                        }
+                        //add the active class to the element from which click event triggered
+                    
+                        li.classList.add('active-note')
+                        // console.log(`list id numebr: ${li.id}`);
+                        currentList = Number(li.id);
+                        document.getElementById('mainText').value = element.note;
+                        // document.getElementById('mainText').focus();
+
+                        currentList = Number(li.id);
+                        li.addEventListener('click', function(){
+                            let getElemWithClass1 = document.querySelector('.active-note');
+                            if(getElemWithClass1 != null){
+                                getElemWithClass1.classList.remove('active-note');
+                            }
+                            li.classList.add('active-note');
+                            currentList =  Number(li.id);
+                            document.getElementById('mainText').value = element.note;
+                            // document.getElementById('mainText').focus();
+                        })
+                        Nnew = Nnew+1;
+                }
+            });
+        }
+    })
     
     document.getElementById('mainText').addEventListener('input', function(){
         // console.log(totalNotes[currentList - 1]);

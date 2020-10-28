@@ -76,7 +76,7 @@ window.onload = function(){
                             document.getElementById('mainText').disabled = true;
     
                             currentList = Number(li.id);
-                            if(deletedNote.length > 2){
+                            // if(deletedNote.length > 2){
                                 li.addEventListener('click', function(){
                                     let getElemWithClass1 = document.querySelector('.active-note');
                                     if(getElemWithClass1 != null){
@@ -97,7 +97,7 @@ window.onload = function(){
         
         
                                 })
-                            }
+                            // }
                             
     
                             i1.addEventListener('click', function(){
