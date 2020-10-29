@@ -279,11 +279,21 @@ $(function(){
 
     });
 
-
+    // toggling function
+    document.getElementById('hide_seek').addEventListener('click', function(){
+        if(document.getElementById('hide_and_show').style.display == "none"){
+            document.getElementById('hide_and_show').style.display = "block";
+            document.getElementById('right_8').classList.remove('col-12');
+            document.getElementById('right_8').classList.add('col-8');
+        }else{
+            document.getElementById('hide_and_show').style.display = "none";
+            document.getElementById('right_8').classList.remove('col-8');
+            document.getElementById('right_8').classList.add('col-12');
+        }
+    })
 
     //  Deleting notes
 
-    
 
     console.log(totalNotes.length);
     document.getElementById('delete-note').addEventListener('click', function(){

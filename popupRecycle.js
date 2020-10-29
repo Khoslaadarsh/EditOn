@@ -47,12 +47,12 @@ window.onload = function(){
                             li.id = n;
                             
                             let i1 = document.createElement('i');
-                            i1.className = "fa fa-refresh";
+                            i1.className = "fa fa-refresh restore";
                             i1.id = `restore${n}`;
                             i1.setAttribute("aria-hidden", "true");
     
                             let i2 = document.createElement('i');
-                            i2.className = "fa fa-trash-o";
+                            i2.className = "fa fa-trash-o delete";
                             i2.id = `premaDelete${n}`;
                             i2.setAttribute("aria-hidden", "true");
     

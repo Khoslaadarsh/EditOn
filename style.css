@@ -42,13 +42,13 @@
     border: solid 0.5px rgb(135, 133, 133);
     height: 13.5vh;
 }
-.middle-right, .middle-3-row{
+/* .middle-right, .middle-3-row{
     border: solid 0.5px rgb(135, 133, 133);
     height: 13.5vh;
-}
+} */
 .bottom-right{
     border: solid 0.5px rgb(135, 133, 133);
-    height: 63vh;
+    height: 76.5vh;
 }
 .bottom-most{
     border: solid 0.5px rgb(135, 133, 133);
@@ -60,14 +60,21 @@
 .bottom-most-right{
     border: solid 0.5px rgb(135, 133, 133);
 }
-.search{
+#search-note{
   /* margin: 3px; */
+  height: 30px;
+}
+#search_icon{
+  /* vertical-align: middle; */
+  padding-top: 7px;
+  padding-left: 5px;
+  color: #4285F4;
 }
 textarea {
     resize: none;
 }
 textarea.ta10em {
-    height: 63vh;
+    height: 76.5vh;
     width: 100vw;
 }
 .each-icon{
@@ -75,7 +82,8 @@ textarea.ta10em {
 }
 
 .active-note {
-  color: rgb(60, 18, 152);
+  color: #4285F4;
+  font-size: 1.1em;
   /* font-size: 24px; */
 }
 
@@ -84,4 +92,44 @@ textarea.ta10em {
 }
 .fa-refresh:hover{
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+#hide_seek{
+  padding-top: 7px;
+  font-size: 1.5em;
+  padding-left: 5px;
+  vertical-align: middle;
+  color: #4285F4;
+  
+}
+#hide_seek:hover{
+
+  font-size: 1.7em;
+}
+#new{
+  vertical-align: middle;
+}
+#New{
+  right: 30px;
+  position: absolute;
+}
+#delete-note{
+  color: #4285F4;
+  font-size: 1.5em;
+  vertical-align: middle;
+  padding-top: 4px;
+}
+#delete-note:hover{
+  font-size: 1.7em;
+}
+#restore{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#delete{
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+#input_feild{
+  padding-top: 10px;
 }
