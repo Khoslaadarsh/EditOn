@@ -1,6 +1,11 @@
 
+
+
+
+$(function(){
     var n = 1;
     var totalNotes = [];
+    var currentList = 1;
 
     class Notes{
         constructor(number, note){
@@ -8,12 +13,8 @@
             this.note = note;
         }
     }
-    var currentList = 1;
 
     var deletedNote = [];
-
-
-$(function(){
     // Getting Elements from Chrome Storage Api and updating the popu page
     chrome.storage.sync.getBytesInUse(['deleted'], function(bytes){
         if(bytes != 0){
@@ -30,13 +31,9 @@ $(function(){
 
     chrome.storage.sync.getBytesInUse(['text'], function(bytes){
         if(bytes !== 0){
-
-            console.log('Inside if');
             chrome.storage.sync.get('text', function(data){
                 // document.getElementById('mainText').innerHTML = data.text
-                    console.log("inside storage");
                     for(var i = 1; i<=data.text.length;i++){
-                        console.log("Inside For");
                         noteNew = new Notes(n, data.text[i-1].note);
                         totalNotes.push(noteNew);
                         document.getElementById('mainText').value = totalNotes[n - 1].note;
@@ -54,7 +51,6 @@ $(function(){
                         //add the active class to the element from which click event triggered
                     
                         li.classList.add('active-note')
-                        // console.log(`list id numebr: ${li.id}`);
                         currentList = Number(li.id);
                         document.getElementById('mainText').value = totalNotes[li.id - 1].note;
                         document.getElementById('mainText').focus();
@@ -78,7 +74,6 @@ $(function(){
         }
         else{
 
-            console.log("Inside else");
             // setting first list item and adding listeners to it
             noteNew = new Notes(n, `Type here ${n}`)
             totalNotes.push(noteNew);
@@ -107,7 +102,6 @@ $(function(){
             document.querySelectorAll('.notesss').forEach(function(item) {
                 // iterate and add event lstener to each of them
                 item.addEventListener('click', function(elem) {
-                    console.log(elem);
                     let getElemWithClass = document.querySelector('.active-note');
                     if (getElemWithClass !== null) {
                         getElemWithClass.classList.remove('active-note');
@@ -149,7 +143,6 @@ $(function(){
             //add the active class to the element from which click event triggered
         
         li.classList.add('active-note')
-        // console.log(`list id numebr: ${li.id}`);
         currentList = Number(li.id);
         document.getElementById('mainText').value = totalNotes[li.id - 1].note;
         document.getElementById('mainText').focus();
@@ -157,7 +150,6 @@ $(function(){
         currentList = Number(li.id);
         // add listener to newly generated list item
         li.addEventListener('click', function(elem){
-            // console.log(li.id);
             let getElemWithClass = document.querySelector('.active-note');
                 if (getElemWithClass !== null) {
                     getElemWithClass.classList.remove('active-note');
@@ -165,7 +157,6 @@ $(function(){
                 //add the active class to the element from which click event triggered
             
             li.classList.add('active-note')
-            // console.log(`list id numebr: ${li.id}`);
             currentList = Number(li.id);
             document.getElementById('mainText').value = totalNotes[li.id - 1].note;
             document.getElementById('mainText').focus();
@@ -194,7 +185,6 @@ $(function(){
                         //add the active class to the element from which click event triggered
                     
                         li.classList.add('active-note')
-                        // console.log(`list id numebr: ${li.id}`);
                         currentList = Number(li.id);
                         document.getElementById('mainText').value = totalNotes[li.id - 1].note;
                         // document.getElementById('mainText').focus();
@@ -234,7 +224,6 @@ $(function(){
                         //add the active class to the element from which click event triggered
                     
                         li.classList.add('active-note')
-                        // console.log(`list id numebr: ${li.id}`);
                         currentList = Number(li.id);
                         document.getElementById('mainText').value = element.note;
                         // document.getElementById('mainText').focus();
@@ -257,7 +246,6 @@ $(function(){
     })
     
     document.getElementById('mainText').addEventListener('input', function(){
-        // console.log(totalNotes[currentList - 1]);
         document.querySelector('ol').children.item(currentList - 1).innerHTML = document.getElementById('mainText').value.substring(0,6)
     })
 
@@ -293,17 +281,11 @@ $(function(){
     })
 
     //  Deleting notes
-
-
-    console.log(totalNotes.length);
     document.getElementById('delete-note').addEventListener('click', function(){
         
         if(totalNotes.length > 1){
-            console.log(currentList);
 
         deletedNote.push(totalNotes[currentList - 1])
-
-        // console.log(document.getElementById('Deleted-Notes'));
 
         totalNotes.splice(currentList - 1, 1);
 
@@ -348,9 +330,6 @@ $(function(){
     $(".button-toggle").click(function(){
         $(this).toggleClass("active");
     });
-    // export default function DeletedNote(){
-    //     return deletedNote;
-    // }
     
     
 

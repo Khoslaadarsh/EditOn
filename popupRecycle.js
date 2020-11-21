@@ -1,4 +1,7 @@
 
+
+
+window.onload = function(){
     var n = 1;
     var totalNotes = [];
 
@@ -11,9 +14,6 @@
     var currentList = 1;
 
     var deletedNote = [];
-
-
-window.onload = function(){
 
     $(function(){
 
@@ -38,7 +38,6 @@ window.onload = function(){
                         document.getElementById('mainText').disabled = true;
                     }
                     else{
-                        console.log(data.deleted);
                         for( var i = 1; i <= data.deleted.length; i++){
                             noteNew = new Notes(n, data.deleted[i - 1].note);
                             deletedNote.push(noteNew);
@@ -47,14 +46,18 @@ window.onload = function(){
                             li.id = n;
                             
                             let i1 = document.createElement('i');
-                            i1.className = "fa fa-refresh restore";
+                            i1.className = "fa fa-refresh";
+                            i1.classList.add("restore");
                             i1.id = `restore${n}`;
                             i1.setAttribute("aria-hidden", "true");
+                            i1.setAttribute("style", "float: right; padding-top: 3px")
     
                             let i2 = document.createElement('i');
-                            i2.className = "fa fa-trash-o delete";
+                            i2.className = "fa fa-trash-o";
+                            i2.classList.add("delete")
                             i2.id = `premaDelete${n}`;
                             i2.setAttribute("aria-hidden", "true");
+                            i2.setAttribute("style", "float: right; padding-top: 3px; margin-right: 2px")
     
                             text = `${data.deleted[i - 1].note.substring(0,6)}  `
                             li.append(text)
@@ -86,12 +89,10 @@ window.onload = function(){
                                     currentList =  Number(li.id);
         
                                     if(currentList == deletedNote.length + 1){
-                                        console.log("Hey i m here");
                                         currentList = currentList - 2;
                                     }
                             
                                     document.getElementById('mainText').disabled = false;
-                                    console.log(currentList);
                                     document.getElementById('mainText').value = deletedNote[currentList - 1].note;
                                     document.getElementById('mainText').disabled = true;
         
@@ -103,9 +104,6 @@ window.onload = function(){
                             i1.addEventListener('click', function(){
                                 currentList =  Number(li.id);
                                 if(confirm(`Do You want to restore the note "${deletedNote[li.id-1].note.substring(0,6)}"`)){
-                                    console.log("should be restored");
-                                    console.log(totalNotes);
-                                    console.log(currentList);
     
                                     totalNotes.push(deletedNote[currentList - 1]);
     
@@ -120,7 +118,6 @@ window.onload = function(){
                                     }
                             
                                     if(currentList == deletedNote.length + 1){
-                                        console.log("Hey i m here");
                                         currentList = currentList - 1;
                                     }
                                     if(deletedNote.length>=1){
@@ -186,7 +183,6 @@ window.onload = function(){
                                         }
                             
                                     // chrome.storage.sync.set({'text':deletedNote}, function(){
-                                    //     console.log("changes saved");
                                     // })
                             
                                     chrome.storage.sync.set({'deleted': deletedNote}, function(){

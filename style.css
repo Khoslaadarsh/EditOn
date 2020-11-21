@@ -89,6 +89,7 @@ textarea.ta10em {
 
 .fa-trash-o:hover{
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  
 }
 .fa-refresh:hover{
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -124,11 +125,12 @@ textarea.ta10em {
 #restore{
   padding-left: 5px;
   padding-right: 5px;
+  float: right;
 }
 #delete{
   padding-left: 5px;
   padding-right: 5px;
-
+  float: right;
 }
 #input_feild{
   padding-top: 10px;
